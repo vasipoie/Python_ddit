@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript">
+function myclick(){
+    $.ajax({
+        url:'/ajax',
+        method: "POST",
+        data: {menu : "짬뽕"},
+        success:function(res){
+            console.log(res);
+        }
+    })
+}
+$(document).ready(function(){
+	$("#btn").bind("click", function(event) { 
+		myclick();
+	});
+});
+</script>
+</head>
+<body>
+	<input type="button" value="ajax" id="btn">
+</body>
+</html>
