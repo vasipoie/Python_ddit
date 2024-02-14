@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function fn_add_act(){
+	document.frm.submit();
+}
+</script>
+</head>
+<body>
+EMP ADD<br/>
+<form action="emp_add_act" name="frm" method="post">
+	<table border="1">
+		<tr>
+			<td>사번</td>
+			<td><input type="text" name="e_id"></td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td><input type="text" name="e_name"></td>
+		</tr>
+		<tr>
+			<td>성별</td>
+			<td><input type="text" name="gen"></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><input type="text" name="addr"></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="저장" onclick="fn_add_act()">
+			</td>
+		</tr>
+	</table>
+</form>
+
+</form>
+</body>
+</html>
