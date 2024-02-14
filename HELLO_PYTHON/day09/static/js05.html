@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function myclick(){
+	var mine = document.getElementById('it_mine').value;
+	console.log(mine);
+	var com = document.getElementById('it_com');
+	var res = document.getElementById('it_result');
+    
+	var result = "";
+	
+	var a = Math.floor(Math.random()*3);
+	if(a == 1){
+		com.value = "가위";
+	}else if(a == 2){
+		com.value = "바위";
+	}else {
+		com.value = "보";
+	}
+    
+    console.log(com.value);
+	
+   if(mine == ("가위") && com.value ==("가위")) result = "비겼다";
+   if(mine == ("가위") && com.value ==("바위")) result = "졌다";
+   if(mine == ("가위") && com.value ==("보"))  result = "이겼다";
+   
+   if(mine == ("바위") && com.value ==("가위")) result = "이겼다";
+   if(mine == ("바위") && com.value ==("바위")) result = "비겼다";
+   if(mine == ("바위") && com.value ==("보"))  result = "졌다";
+   
+   if(mine == ("보") && com.value ==("가위")) result = "졌다";
+   if(mine == ("보") && com.value ==("바위")) result = "이겼다";
+   if(mine == ("보") && com.value ==("보"))  result = "비겼다";
+    
+    res.value = result;
+    console.log(res.value);
+}
+</script>
+<style type="text/css">
+#it_mine, #it_com, #it_result {
+  width: 40px;
+}
+</style>
+</head>
+<body>
+
+	<table border="1px">
+		<tr>
+			<td>나:</td>
+			<td>
+				<input type="text" id="it_mine"/>
+			</td>
+		</tr>
+		<tr>
+			<td>컴:</td>
+			<td>
+				<input type="text" id="it_com"/>
+			</td>
+		</tr>
+		<tr>
+			<td>결과:</td>
+			<td>
+				<input type="text" id="it_result"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="게임하기" onclick="myclick()"/>
+			</td>
+		</tr>
+		
+	
+	</table>
+	
+
+
+
+</body>
+</html>

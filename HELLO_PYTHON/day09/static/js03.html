@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function myclick(){
+	var obj_it = document.querySelector("#it");
+	var obj_div = document.querySelector("#my_div");
+	var dan = obj_it.value;
+	var idan = parseInt(dan);
+	
+	var txt = "";
+	
+	for(var i=1; i<=9; i++){
+		txt += idan + "*"+1+"="+(idan*1)+"<br/>";
+	}
+	
+	obj_div.innerHTML = txt;	
+}
+</script>
+<style type="text/css">
+#it {
+	width: 30px;
+}
+#my_div {
+	height: 200px;
+}
+</style>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<td>출력단수 :</td>
+			<td>
+				<input type="text" id="it"/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="button" value="구구단출력" onclick="myclick()">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div id="my_div"></div>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

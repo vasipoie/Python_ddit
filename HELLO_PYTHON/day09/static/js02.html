@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#it01, #it02, #it03{
+	width: 30px;
+}
+</style>
+<script type="text/javascript">
+function myclick(){
+	var fir = document.getElementById('it01').value;
+	console.log(fir);
+	var sec = document.getElementById('it02').value;
+	console.log(sec);
+	res = Number(fir)+Number(sec);
+	document.getElementById('it03').value = res;
+}
+</script>
+</head>
+<body>
+<input type="text" id="it01" />
++
+<input type="text" id="it02" />
+<input type="button" value="=" onclick="myclick()"/>
+<input type="text" id="it03"/>
+</body>
+</html>

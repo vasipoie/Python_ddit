@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<style type="text/css">
+body{
+	text-align: center;
+}
+#it {
+	width: 120px;
+	text-align: right;
+}
+</style>
+<script type="text/javascript">
+function myclick(obj){
+	
+	let str_new = $(obj).val();
+	let str_old = $("#it").val();
+	
+	$("#it").val(str_old + str_new);
+}
+
+function mycall(){
+	var str_tel = $("#it").val();
+	alert("calling\n"+str_tel)
+}
+
+$(document).ready(function(){
+	$("input[name='btn_num']").bind("click", function(event) { 
+// 		console.log(event.target);
+		console.log(this);
+		myclick(this);
+	});
+	
+	$("#btn_call").bind("click", function(event) { 
+		mycall();
+	});
+});
+</script>
+</head>
+<body>
+
+	<table border="1px">
+		<tr>
+			<td colspan="3">
+				<input type="text" id="it" />
+			</td>
+		</tr>
+		<tr>
+			<td><input type="button" name="btn_num" value="1" /></td>
+			<td><input type="button" name="btn_num" value="2" /></td>
+			<td><input type="button" name="btn_num" value="3" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="btn_num" value="4" /></td>
+			<td><input type="button" name="btn_num" value="5" /></td>
+			<td><input type="button" name="btn_num" value="6" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="btn_num" value="7" /></td>
+			<td><input type="button" name="btn_num" value="8" /></td>
+			<td><input type="button" name="btn_num" value="9" /></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="btn_num" value="0" /></td>
+			<td colspan="2">
+				<input type="button" id="btn_call" value="☎"  />
+			</td>
+		</tr>
+	</table>
+
+
+
+</body>
+</html>
