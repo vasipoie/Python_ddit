@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>위도 경도 알아내기</title>
+
+</head>
+<body>
+	<div id="map" style="width: 100%; height: 350px;"></div>
+	<script src="jquery-3.7.1.js"></script>
+	<script type="text/javascript">
+		function fn_near5(lng,lat){
+			var s_id = "__";
+			var bus_id = "__";
+		    console.log("lng",lng);
+		    console.log("lat",lat);
+		    var param = {
+		    	lng:lng,
+		    	lat:lat
+		    };
+		    $.ajax({
+		        url:'/near5',
+		        async: false, 
+		        method: "POST", 
+		        data: param,   
+		        success:function(res){
+		        	var lat = res.list[0].lat;
+		        	var lng = res.list[0].lng;
+		        	s_id = res.list[0].s_id;
+					var marker = new kakao.maps.Marker({
+						position : new kakao.maps.LatLng(lat,lng)
+					});
+					marker.setMap(map);
+		        }
+		    });
+		    console.log(s_id);
+		    
+		    $.ajax({
+		        url:'/getbusids',
+		        async: false, 
+		        method: "POST", 
+		        data: {
+		        	s_id:s_id
+			    },   
+		        success:function(res){
+		        	console.log(res);
+		        	bus_id = res.list[0].bus_id;
+		        }
+		    });
+		    console.log("bus_id",bus_id);
+		    
+		    $.ajax({
+		        url:'/getpath',
+		        async: false, 
+		        method: "POST", 
+		        data: {
+		        	bus_id:bus_id
+			    },   
+		        success:function(res){
+		        	console.log(res);
+		        	paths = res.list;
+		        }
+		    });
+		    console.log("paths", paths);
+		    
+		    console.log("paths", paths[0].lat,paths[0].lng);
+		    console.log("paths", paths[1].lat,paths[1].lng);
+		    console.log("paths", paths[2].lat,paths[2].lng);
+		    var latlngs = [];
+		    for(var i=0; i<paths.length; i++){
+		    	latlngs.push(new kakao.maps.LatLng(paths[i].lat, paths[i].lng));
+		    }
+		    var polyline1 = new kakao.maps.Polyline({
+				path: latlngs,
+				strokeWeight: 4,
+				strokeColor: '#000000',
+				strokeOpacity: 0.7,
+				strokeStyle: 'solid'
+			});
+			polyline1.setMap(map);
+		}
+		
+		
+	</script>
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=98d674a29caa659b0ae9e60880b62fb0"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center : new kakao.maps.LatLng(37.57168017210201, 126.97656237132155), // 지도의 중심좌표
+			level : 3
+		};
+		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+		
+		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {  
+			
+		    var latlng = mouseEvent.latLng;
+		    var lng = latlng.La;
+		    var lat = latlng.Ma;
+		    
+		    fn_near5(lng,lat);
+		});
+		
+	</script>
+</body>
+</html>

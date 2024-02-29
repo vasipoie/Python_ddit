@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.js"></script>
+<script type="text/javascript">
+function fn_ajax(){
+	var a = 1;
+	var b = 10;
+    $.ajax({
+        url:'/ajax1',
+        async: false,
+       	method: 'POST',
+        success:function(res){
+        	console.log(res.result);
+        	a = res.result;
+        }
+    })
+    
+    $.ajax({
+        url:'/ajax2',
+        async: false,
+       	method: 'POST',
+        success:function(res){
+        	console.log(res.result);
+        	b = res.result;
+        }
+    })
+    
+    console.log("a",a);
+    console.log("b",b);
+}
+
+
+</script>
+</head>
+<body>
+	
+	<a href="javascript:fn_ajax()">ajax</a>
+
+</body>
+</html>
+
